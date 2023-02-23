@@ -1,0 +1,90 @@
+CREATE DATABASE my_database;
+use my_database;
+create table Address(
+address_id int primary key,
+address varchar(255)
+);
+create table Classes(
+class_id int primary key,
+name_class varchar(45),
+languge_class varchar(45),
+description_classes varchar(255)
+);
+create table Students(
+student_id int primary key,
+fullname varchar(45),
+address_id int,
+age_student varchar(11),
+phone varchar(10) not null unique,
+classes_id int,
+foreign key (address_id) references Address(address_id),
+foreign key (classes_id) references Classes(class_id)
+);
+create table Course(
+course_id int primary key,
+name_course varchar(45),
+description_course varchar(45)
+);
+create table Points(
+point_id int primary key,
+course_id int,
+student_id int,
+points varchar(45),
+foreign KEY (course_id) REFERENCES Course(course_id),
+foreign key (student_id) references Students(student_id)
+);
+insert into Address(address_id, address) values (1, "Nam Dinh");
+insert into Address(address_id, address) values (2, "Ninh Binh");
+insert into Address(address_id, address) values (3, "Thanh Hoa");
+insert into Address(address_id, address) values (4, "Thai Binh");
+insert into Address(address_id, address) values (5, "Ha Noi");
+
+
+insert into Classes(class_id, name_class, languge_class, description_classes) values(1, "Lop 1", "VietNamese", "Chi tiet");
+insert into Classes(class_id, name_class, languge_class, description_classes) values(2, "Lop 2", "Tieng anh", "Chi tiet");
+insert into Classes(class_id, name_class, languge_class, description_classes) values(3, " Lop 3", "Tieng duc", "Chi tiet");
+insert into Classes(class_id, name_class, languge_class, description_classes) values(4, "Lop 4", "Tieng phap", "Chi tiet");
+insert into Classes(class_id, name_class, languge_class, description_classes) values(5, "Lop 5", "Tieng my", "Chi tiet");
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(1, "Luc", 1, 25, 012345, 1);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(2, "Doan",2, 28, 0123456, 2);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(3, "Nam", 3, 26, 0123, 3);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(4, "Hoang", 4, 26, 01234567, 4);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(5, "Phuc", 5, 24, 012, 5);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(6, "Huy", 3, 22, 0000, 4);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(7, "Duong", 2, 19, 0011, 3);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(8, "Doan Du", 4, 28, 4411, 1);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(9, "Nguyen", 5, 27, 010101, 2);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(10, "LL", 4, 20, 202020, 5);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(11, "Nguyen", 4, 20, 20202044, 4);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(13, "Anh", 4, 20, 202033, 3);
+insert into Students(student_id, fullname, address_id, age_student, phone, classes_id) values(12, "Anh", 4, 20, 20203440, 5);
+
+
+insert into Course(course_id, name_course, description_course) values(1, "Lap trinh", "Java");
+insert into Course(course_id, name_course, description_course) values(2, "Ngon ngu", "C++");
+insert into Course(course_id, name_course, description_course) values(3, "Tieng Viet", "V");
+insert into Course(course_id, name_course, description_course) values(4, "Lap trinh", "C");
+insert into Course(course_id, name_course, description_course) values(5, "Thuat toan", "Dau hang");
+
+
+insert into Points(point_id, course_id, student_id, points) values(1, 1, 3, "10");
+insert into Points(point_id, course_id, student_id, points) values(2, 2, 4, "9");
+insert into Points(point_id, course_id, student_id, points) values(3, 4, 5, "10");
+insert into Points(point_id, course_id, student_id, points) values(4, 2, 1, "2");
+insert into Points(point_id, course_id, student_id, points) values(5, 3, 2, "8");
+insert into Points(point_id, course_id, student_id, points) values(6, 5, 7, "6");
+insert into Points(point_id, course_id, student_id, points) values(7, 3, 7, "5");
+insert into Points(point_id, course_id, student_id, points) values(8, 5, 8, "1");
+insert into Points(point_id, course_id, student_id, points) values(9, 2, 9, "16");
+insert into Points(point_id, course_id, student_id, points) values(10, 1, 10, "17");
+insert into Points(point_id, course_id, student_id, points) values(11, 3, 11, "16");
+insert into Points(point_id, course_id, student_id, points) values(12, 4, 12, "20");
+insert into Points(point_id, course_id, student_id, points) values(13, 2, 13, "15");
+insert into Points(point_id, course_id, student_id, points) values(14, 5, 9, "4");
+insert into Points(point_id, course_id, student_id, points) values(15, 4, 10, "10");
+
+
+select * from Students where fullname like "%Nguyen";
+select * from Students where fullname like "%Anh";
+select * from Students where age_student in (20, 21, 22, 23, 24, 25);
+select * from Students where student_id in (12, 13);
